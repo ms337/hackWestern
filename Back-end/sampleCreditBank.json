@@ -12,7 +12,7 @@
                 "bankAccount": {
                     "accountType": "checking",
                     "routingNumber": "121042882",
-                    "accountNumber": "123456789",
+                    "accountNumber": "123456789000",
                     "nameOnAccount": "John Doe"
                 }
             },
