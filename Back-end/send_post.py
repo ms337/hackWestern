@@ -9,6 +9,6 @@ info = {"amount" : 5,
 
 r = requests.post("https://8080-dot-4934063-dot-devshell.appspot.com/add_money_to_dolphin", data=info)
 print(r)
-print(r.text)
+#print(r.text)
 
 

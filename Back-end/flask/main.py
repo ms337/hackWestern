@@ -42,7 +42,7 @@ def add_money_to_dolphin():
 	    }
 	}
     req = request.post('https://apitest.authorize.net/xml/v1/request.api', data=auth_data)
-    return jsonify(auth_data)
+    return jsonify("hello")
 
 @app.route('/', methods=['POST'])
 def get_the_data():
