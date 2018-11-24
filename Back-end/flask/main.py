@@ -23,20 +23,20 @@ app = Flask(__name__)
 @app.route('/add_money_to_dolphin', methods=['POST'])
 def add_money_to_dolphin():
     print(request.data)
-	data = {
-	    "createTransactionRequest": {
-	        "merchantAuthentication": {
-	            "name": "2U6x9AuE",
-	            "transactionKey": "5KY6z6r64HtK8kgv"
+	data={
+	    "createTransactionRequest":{
+	        "merchantAuthentication":{
+	            "name":"2U6x9AuE",
+	            "transactionKey":"5KY6z6r64HtK8kgv"
 	        },
-	        "transactionRequest": {
+	        "transactionRequest":{
 	            "transactionType": "authCaptureTransaction",
-	            "amount": request.data["amount"],
-	            "payment": {
-	                "creditCard": {
-	                    "cardNumber": request.data["cardNumber"],
-	                    "expirationDate": request.data["expirationDate"],
-	                    "cardCode": request.data["cardCode"]
+	            "amount":request.data["amount"],
+	            "payment":{
+	                "creditCard":{
+	                    "cardNumber":request.data["cardNumber"],
+	                    "expirationDate":request.data["expirationDate"],
+	                    "cardCode":request.data["cardCode"]
 	                }
 	            }
 	        }
