@@ -23,7 +23,7 @@ app = Flask(__name__)
 @app.route('/add_money_to_dolphin', methods=['POST'])
 def add_money_to_dolphin():
     print(request.data)
-	data={
+	auth_data={
 	    "createTransactionRequest":{
 	        "merchantAuthentication":{
 	            "name":"2U6x9AuE",
@@ -42,7 +42,7 @@ def add_money_to_dolphin():
 	        }
 	    }
 	}
-	req = request.post(https://apitest.authorize.net/xml/v1/request.api, data=data)
+	req = request.post(https://apitest.authorize.net/xml/v1/request.api, data=auth_data)
     return req.text
 
 @app.route('/', methods=['POST'])
