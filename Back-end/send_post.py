@@ -1,4 +1,14 @@
 import requests
-data = b'48958695427097097402529251103137444756'
-r = requests.post("https://8080-dot-4934063-dot-devshell.appspot.com", data=data)
+
+info = {"amount" : 5,
+        "creditCard": {
+                    "cardNumber": "5424000000000015",
+                    "expirationDate": "2020-12",
+                    "cardCode": "999" }
+        }
+
+r = requests.post("https://8080-dot-4934063-dot-devshell.appspot.com/add_money_to_dophin", data=info)
+print(r)
 print(r.text)
+
+

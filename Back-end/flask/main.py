@@ -20,6 +20,11 @@ from flask import Flask, request, jsonify
 # called `app` in `main.py`.
 app = Flask(__name__)
 
+@app.route('/add_money_to_dophin', methods=['POST'])
+def get_data():
+    print('Recieved from client')
+    return Response('We recieved something…')
+
 @app.route('/', methods=['POST'])
 def get_data():
     print('Recieved from client: {}'.format(request.data))
