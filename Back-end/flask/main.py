@@ -26,7 +26,7 @@ def get_data():
     return Response('We recieved something…')
 
 @app.route('/', methods=['POST'])
-def get_data():
+def get_the_data():
     print('Recieved from client: {}'.format(request.data))
     return Response('We recieved something…')
 
