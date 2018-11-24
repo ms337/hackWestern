@@ -59,13 +59,14 @@ var convertDataAndSave = function(){
     console.log(hex2a(sdk.asString(processData)));
     var ASCIIData = hex2a(sdk.asString(processData));
     var splitData = ASCIIData.split(",");
+    //date: is the current time stamp, type: 0 = receive, 1 = send, wallet_id: id for user wallet, amount: is amount $
     var transaction = {
-          "date":splitData[0],
-          "type":splitData[1],
-          "partner":2321442142,
-          "amount":50
+          "date":new Date(),
+          "type":splitData[0],
+          "wallet_id":splitData[1],
+          "amount":splitData[2]
     };
-    localStorage.setItem('storeObj', JSON.stringify(transaction));
+    localStorage.setItem('transaction', JSON.stringify(transaction));
     
   }).catch(console.error)
 }
