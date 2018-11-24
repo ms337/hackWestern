@@ -52,8 +52,10 @@ var convertDataAndSave = function () {
     var splitData = ASCIIData.split(",");
     if(splitData[0]=="1"){
       console.log("payment confirmed")
+      sdk.stop();
     }else if(splitData[0]=="0"){
       console.log("payment cancelled")
+      sdk.stop();
     }
     //date: is the current time stamp, type: always received in this case, wallet_id: id for user wallet, amount: is amount $
     else if (myWallet_id == splitData[0]) {
