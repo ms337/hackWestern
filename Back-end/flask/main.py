@@ -23,7 +23,7 @@ app = Flask(__name__)
 @app.route('/in_app_transactions', methods=['GET', 'POST'])
 def add_message(uuid):
     content = request.json
-    print content['mytext']
+    print(content['mytext'])
     return jsonify({"uuid":uuid})
 
 @app.route('/')
