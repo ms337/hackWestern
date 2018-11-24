@@ -31,22 +31,22 @@ var receiveChirp = function () {
       if (data.length > 0) {
         console.log(data);
         processData = data;
-        var ASCIIData = hex2a(sdk.asString(processData));
-        var splitData = ASCIIData.split(",");
-        if (splitData[0] == "1") {
-          //reduce balance by amount sent
-          console.log("payment confirmed");
-        } else if (splitData[0] == "0") {
-          //cancel/do nothing 
-          console.log("payment cancelled");
-        }else{
-          convertDataAndSave();
-        }
         //stopSDK();
       }
     }
   }).then(sdk => {
     //do nothing for now maybe make the json here 
+    var ASCIIData = hex2a(sdk.asString(processData));
+    var splitData = ASCIIData.split(",");
+    if (splitData[0] == "1") {
+      //reduce balance by amount sent
+      console.log("payment confirmed");
+    } else if (splitData[0] == "0") {
+      //cancel/do nothing 
+      console.log("payment cancelled");
+    } else {
+      convertDataAndSave();
+    }
 
   }).catch(console.error)
 }
