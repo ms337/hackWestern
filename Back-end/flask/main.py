@@ -13,13 +13,18 @@
 # limitations under the License.
 
 # [START gae_python37_app]
-from flask import Flask
+from flask import Flask, request, jsonify
 
 
 # If `entrypoint` is not defined in app.yaml, App Engine will look for an app
 # called `app` in `main.py`.
 app = Flask(__name__)
 
+@app.route('/in_app_transactions', methods=['GET', 'POST'])
+def add_message(uuid):
+    content = request.json
+    print content['mytext']
+    return jsonify({"uuid":uuid})
 
 @app.route('/')
 def hello():
