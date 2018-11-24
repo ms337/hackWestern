@@ -65,9 +65,11 @@ var convertDataAndSave = function () {
     if(splitData[0]=="1"){
         //reduce balance by amount sent
         console.log("payment confirmed");
+        sdk.stop();
     }else if(splitData[0]=="0"){
       //cancel/do nothing 
       console.log("payment cancelled");
+      sdk.stop();
     }
     //date: is the current time stamp, type: always received in this case, wallet_id: id for user wallet, amount: is amount $
     if (myWallet_id == splitData[0]) {
