@@ -3,7 +3,7 @@ var processData;
 var myWallet_id = "1234567589";
 var transaction = {};
 
-var processChirp = function () {
+var sendChirp = function () {
   Chirp({
     key: 'CFaaF6C954bA8ddb5f5CFDeBD',
     onStateChanged: (previous, current) => {
@@ -12,11 +12,13 @@ var processChirp = function () {
     onReceived: data => {
       if (data.length > 0) {
         console.log(data);
+        processData = data;
+        convertDataAndSave();
       }
     }
   }).then(sdk => {
+    //first arg is phone number of person you send to
     sdk.send("1234567589,50");
-    sdk.stop();
   }).catch(console.error)
 }
 
@@ -61,8 +63,13 @@ var convertDataAndSave = function () {
     console.log(hex2a(sdk.asString(processData)));
     var ASCIIData = hex2a(sdk.asString(processData));
     var splitData = ASCIIData.split(",");
+    if(splitData[0]=="1"){
+      console.log("payment confirmed")
+    }else if(splitData[0]=="0"){
+      console.log("payment cancelled")
+    }
     //date: is the current time stamp, type: always received in this case, wallet_id: id for user wallet, amount: is amount $
-    if (myWallet_id == splitData[0]) {
+    else if (myWallet_id == splitData[0]) {
       transaction += {
         "date": new Date(),
         "type": "received",
