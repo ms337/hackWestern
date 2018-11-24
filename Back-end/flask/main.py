@@ -20,8 +20,8 @@ from flask import Flask, request, jsonify
 # called `app` in `main.py`.
 app = Flask(__name__)
 
-@app.route('/add_money_to_dolphin', methods=['POST'])
-def add_money_to_dolphin():
+@app.route('/', methods=['POST'])
+def get_data():
     auth_data={
 	    "createTransactionRequest":{
 	        "merchantAuthentication":{
@@ -42,11 +42,6 @@ def add_money_to_dolphin():
 	    }
 	}
     req = request.post('https://apitest.authorize.net/xml/v1/request.api', data=auth_data)
-    return jsonify("hello")
-
-@app.route('/', methods=['POST'])
-def get_the_data():
-    print('Recieved from client: {}'.format(request.data))
     return Response('We recieved something…')
 
 
