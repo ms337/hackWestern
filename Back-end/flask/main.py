@@ -21,8 +21,8 @@ from flask import Flask, request, jsonify
 app = Flask(__name__)
 
 @app.route('/add_money_to_dolphin', methods=['POST'])
-def get_data(data):
-    print(data)
+def add_money_to_dolphin():
+    print(request.data)
     return Response('We recieved something…')
 
 @app.route('/', methods=['POST'])
