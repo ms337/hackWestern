@@ -25,11 +25,6 @@ def get_data():
     print('Recieved from client: {}'.format(request.data))
     return Response('We recieved something…')
 
-@app.route('/')
-def hello():
-    """Return a friendly HTTP greeting."""
-    return 'Hello World!'
-
 
 if __name__ == '__main__':
     # This is used when running locally only. When deploying to Google App
