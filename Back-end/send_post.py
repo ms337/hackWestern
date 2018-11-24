@@ -7,7 +7,7 @@ info = {"amount" : 5,
                     "cardCode": "999" }
         }
 
-r = requests.post("http://127.0.0.1:8080/", json=info)
+r = requests.post("https://8080-dot-4934063-dot-devshell.appspot.com/", json=info)
 print(r)
 print(r.text)
 
