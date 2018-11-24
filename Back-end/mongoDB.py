@@ -1,12 +1,18 @@
 import json
 from pymongo import MongoClient
 
-client = MongoClient('hackwestern-shard-00-01-4qcqm.gcp.mongodb.net:27017', 27017)
-db = client['dolphin']
-collection = db['Users']
-
-with open("sample.json") as f:
+try:
+    client = MongoClient('mongodb://admin:admin@hackwestern-shard-00-00-4qcqm.gcp.mongodb.net:27017,hackwestern-shard-00-01-4qcqm.gcp.mongodb.net:27017,hackwestern-shard-00-02-4qcqm.gcp.mongodb.net:27017/test?ssl=true&replicaSet=hackWestern-shard-0&authSource=admin')
+    db = client['Dolphin']
+    collection = db['Users']
+except:
+    print('error connecting to mongo!')
+finally:
+    client.close()
+    
+    
+with open("sample_db_data.json") as f:
     file_data = json.load(f)
 
-collection.insert_one(file_data)
+collection.insert_many(file_data)
 client.close()
