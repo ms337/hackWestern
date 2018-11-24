@@ -2,26 +2,12 @@ const { Chirp } = ChirpConnectSDK;
 var processData;
 var myWallet_id = "1234567589";
 var transaction = {};
+sendPressed = false;
 
-var sendChirp = function () {
-  Chirp({
-    key: 'CFaaF6C954bA8ddb5f5CFDeBD',
-    onStateChanged: (previous, current) => {
-      console.log(current);
-    },
-    onReceived: data => {
-      if (data.length > 0) {
-        console.log(data);
-        processData = data;
-        convertDataAndSave();
-      }
-    }
-  }).then(sdk => {
-    //first arg is phone number of person you send to
-    sdk.send("1234567589,50");
-  }).catch(console.error)
+var sendChirp = function(){
+  sendPressed = true;
+  receiveChirp();
 }
-
 var receiveChirp = function () {
   Chirp({
     key: 'CFaaF6C954bA8ddb5f5CFDeBD',
@@ -36,7 +22,11 @@ var receiveChirp = function () {
       }
     }
   }).then(sdk => {
-    //do nothing for now maybe make the json here 
+    if(sendPressed){
+      //first arg is phone number of person you send to
+      sdk.send("1234567589,50");
+      sendPressed = false;
+    }
 
   }).catch(console.error)
 }
@@ -58,9 +48,6 @@ var convertDataAndSave = function () {
       console.log(current);
     }
   }).then(sdk => {
-    console.log(processData);
-    console.log(sdk.asString(processData));
-    console.log(hex2a(sdk.asString(processData)));
     var ASCIIData = hex2a(sdk.asString(processData));
     var splitData = ASCIIData.split(",");
     if(splitData[0]=="1"){
@@ -80,7 +67,6 @@ var convertDataAndSave = function () {
       sdk.send("1");
       sdk.stop();
     } else {
-      console.log("wrong phone number");
       sdk.send("0");
       sdk.stop();
     }
