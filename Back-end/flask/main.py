@@ -22,28 +22,27 @@ app = Flask(__name__)
 
 @app.route('/', methods=['POST'])
 def get_data():
-    auth_data={
-	    "createTransactionRequest":{
-	        "merchantAuthentication":{
-	            "name":"2U6x9AuE",
-	            "transactionKey":"5KY6z6r64HtK8kgv"
-	        },
-	        "transactionRequest":{
-	            "transactionType": "authCaptureTransaction",
-	            "amount":request.data["amount"],
-	            "payment":{
-	                "creditCard":{
-	                    "cardNumber":request.data["cardNumber"],
-	                    "expirationDate":request.data["expirationDate"],
-	                    "cardCode":request.data["cardCode"]
-	                }
-	            }
-	        }
-	    }
-	}
-    req = request.post('https://apitest.authorize.net/xml/v1/request.api', data=auth_data)
-    return Response('We recieved something…')
-
+ #    auth_data={
+	#     "createTransactionRequest":{
+	#         "merchantAuthentication":{
+	#             "name":"2U6x9AuE",
+	#             "transactionKey":"5KY6z6r64HtK8kgv"
+	#         },
+	#         "transactionRequest":{
+	#             "transactionType": "authCaptureTransaction",
+	#             "amount":request.data["amount"],
+	#             "payment":{
+	#                 "creditCard":{
+	#                     "cardNumber":request.data["cardNumber"],
+	#                     "expirationDate":request.data["expirationDate"],
+	#                     "cardCode":request.data["cardCode"]
+	#                 }
+	#             }
+	#         }
+	#     }
+	# }
+ #    req = request.post('https://apitest.authorize.net/xml/v1/request.api', data=auth_data)
+    return "test"
 
 if __name__ == '__main__':
     # This is used when running locally only. When deploying to Google App
