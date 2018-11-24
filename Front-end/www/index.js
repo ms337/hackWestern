@@ -15,8 +15,9 @@ var processChirp = function () {
       }
     }
   }).then(sdk => {
-    sdk.send("hello");
-    sdk.stop();
+    sdk.send("1234567589,50");
+    convertDataAndSave();
+    //sdk.stop();
   }).catch(console.error)
 }
 
@@ -63,8 +64,10 @@ var convertDataAndSave = function () {
     var splitData = ASCIIData.split(",");
     if(splitData[0]=="1"){
         //reduce balance by amount sent
+        console.log("payment confirmed");
     }else if(splitData[0]=="0"){
       //cancel/do nothing 
+      console.log("payment cancelled");
     }
     //date: is the current time stamp, type: always received in this case, wallet_id: id for user wallet, amount: is amount $
     if (myWallet_id == splitData[0]) {
