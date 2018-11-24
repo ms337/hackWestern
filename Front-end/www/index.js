@@ -16,7 +16,7 @@ var processChirp = function () {
     }
   }).then(sdk => {
     sdk.send("1234567589,50");
-    convertDataAndSave();
+    receiveChirp();
     //sdk.stop();
   }).catch(console.error)
 }
