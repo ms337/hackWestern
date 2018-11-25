@@ -89,7 +89,7 @@ var updateWallet = function() {
   var cardCode = document.getElementById("cardCode").value;
   var amountToAdd = document.getElementById("amountToAdd").value;
   const xhttp = new XMLHttpRequest();
-  const url = 'https://8080-dot-4934063-dot-devshell.appspot.com/add_money_to_dolphin';
+  const url = 'http://35.231.228.196:80/update_user';
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       print("WORKS");
