@@ -243,7 +243,7 @@ def create_user():
     finally:
         client.close()
     
-    user = {"wallet_id": "sdklnasdas",
+    user = {"wallet_id": request.to_json()['wallet_id'],
             "password": request.get_json()['password'],
             "balance": 0,
             "in_app_transactions": [],
@@ -284,12 +284,12 @@ def user_data():
 # withdraw money from Dolphin
 @app.route('/withdraw', methods=['POST'])
 def withdraw_data():
-    return credit_bank_account(request.to_json())
+    return credit_bank_account(request.form())
 
 # deposit money to Dolphin
 @app.route('/deposit', methods=['POST'])
 def deposit_data():
-    return charge_credit_card(request.to_json())
+    return charge_credit_card(request.form())
 
 
 if __name__ == '__main__':
