@@ -253,6 +253,11 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
+#testing
+@app.route('/', methods=['GET'])
+def test():
+    return "hello world"
+
 # create a user  phone# password
 @app.route('/create_user', methods=['POST'])
 def create_user():
