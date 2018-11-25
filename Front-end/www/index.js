@@ -103,16 +103,20 @@ var updateWallet = function() {
 
 var withdrawFromWallet = function() {
   const Http = new XMLHttpRequest();
-  const url = 'https://8080-dot-4934063-dot-devshell.appspot.com/';
+  const url = 'https://8080-dot-4934063-dot-devshell.appspot.com/withdraw'; //CHECK URL
 
   Http.open("POST", url);
 
   Http.send(info = {"amount" : 50,
-  "creditCard": {
-              "cardNumber": "5424000000000015",
-              "expirationDate": "2020-12",
-              "cardCode": "999" }
-  });
+            "payment": {
+                "bankAccount": {
+                    "accountType": "checking",
+                    "routingNumber": "121042882",
+                    "accountNumber": "123456789000",
+                    "nameOnAccount": "John Doe"
+                }
+            }
+          });
   Http.onreadystatechange=(e)=>{
     console.log(Http.responseText);
   //console.log(xhttp.responseText);
