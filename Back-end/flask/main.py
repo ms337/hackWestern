@@ -24,9 +24,9 @@ def charge_credit_card(data):
 
     # Create the payment data for a credit card
     creditCard = apicontractsv1.creditCardType()
-    creditCard.cardNumber = data["creditCard"]["cardNumber"]
-    creditCard.expirationDate = data["creditCard"]["expirationDate"]
-    creditCard.cardCode = data["creditCard"]["cardCode"]
+    creditCard.cardNumber = data["cardNumber"]
+    creditCard.expirationDate = data["expirationDate"]
+    creditCard.cardCode = data["cardCode"]
 
     # Add the payment data to a paymentType object
     payment = apicontractsv1.paymentType()
@@ -290,7 +290,7 @@ def withdraw_data():
 # deposit money to Dolphin
 @app.route('/deposit', methods=['POST'])
 def deposit_data():
-    something = charge_credit_card(request.form())
+    something = charge_credit_card(str(request))
     return something
 
 
