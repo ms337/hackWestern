@@ -277,7 +277,9 @@ def user_data():
         return 'error connecting to mongo!'
     finally:
         client.close()
-
+        
+    collection.update_one({'wallet_id':request.to_json()['wallet_id']}, 
+                           {"$set": {"balance":request.to_json()['balance']}}, upsert=False)
     client.close()
 
 
