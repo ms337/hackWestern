@@ -101,7 +101,7 @@ var updateWallet = function() {
   }
 }
 
-var updateWallet = function() {
+var withdrawFromWallet = function() {
   const Http = new XMLHttpRequest();
   const url = 'https://8080-dot-4934063-dot-devshell.appspot.com/';
 
