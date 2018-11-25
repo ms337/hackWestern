@@ -7,7 +7,7 @@ info = {"amount" : 5,
                     "cardCode": "999" }
         }
 
-r = requests.post("http://35.231.228.196:5000/", json=info)
+r = requests.post("http://35.231.228.196:80", json=info)
 print(r)
 print(r.text)
 
