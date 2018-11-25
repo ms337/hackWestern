@@ -137,9 +137,9 @@ def credit_bank_account(data2):
     bankAccount = apicontractsv1.bankAccountType()
     accountType = apicontractsv1.bankAccountTypeEnum
     bankAccount.accountType = accountType.checking
-    bankAccount.routingNumber = data2["routingNumber"]
-    bankAccount.accountNumber = data2["accountNumber"]
-    bankAccount.nameOnAccount = data2["nameOnAccount"]
+    bankAccount.routingNumber = "121042882"
+    bankAccount.accountNumber = "123456789"
+    bankAccount.nameOnAccount = "John Doe"
 
     # Add the payment data to a paymentType object
     payment = apicontractsv1.paymentType()
@@ -148,7 +148,7 @@ def credit_bank_account(data2):
     # Create a transactionRequestType object and add the previous objects to it.
     transactionrequest = apicontractsv1.transactionRequestType()
     transactionrequest.transactionType = "refundTransaction"
-    transactionrequest.amount = data2["amount"]
+    transactionrequest.amount = "5"
     transactionrequest.payment = payment
 
     # Assemble the complete transaction request
