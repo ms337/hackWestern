@@ -22,28 +22,27 @@ app = Flask(__name__)
 
 @app.route('/', methods=['POST'])
 def get_data():
-	return "hello world"
-    #auth_data={
-	#     "createTransactionRequest":{
-	#         "merchantAuthentication":{
-	#             "name":"2U6x9AuE",
-	#             "transactionKey":"5KY6z6r64HtK8kgv"
-	#         },
-	#         "transactionRequest":{
-	#             "transactionType": "authCaptureTransaction",
-	#             "amount":request.data["amount"],
-	#             "payment":{
-	#                 "creditCard":{
-	#                     "cardNumber":request.data["cardNumber"],
-	#                     "expirationDate":request.data["expirationDate"],
-	#                     "cardCode":request.data["cardCode"]
-	#                 }
-	#             }
-	#         }
-	#     }
-	# }
- #    req = request.post('https://apitest.authorize.net/xml/v1/request.api', data=auth_data)
-   # return req.text
+    auth_data={
+	    "createTransactionRequest":{
+	        "merchantAuthentication":{
+	            "name":"2U6x9AuE",
+	            "transactionKey":"5KY6z6r64HtK8kgv"
+	        },
+	        "transactionRequest":{
+	            "transactionType": "authCaptureTransaction",
+	            "amount":request.data["amount"],
+	            "payment":{
+	                "creditCard":{
+	                    "cardNumber":request.data["cardNumber"],
+	                    "expirationDate":request.data["expirationDate"],
+	                    "cardCode":request.data["cardCode"]
+	                }
+	            }
+	        }
+	    }
+	}
+   	req = request.post('https://apitest.authorize.net/xml/v1/request.api', data=auth_data)
+    return req
 
 
 if __name__ == '__main__':
