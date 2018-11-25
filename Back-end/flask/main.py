@@ -12,29 +12,7 @@ import sys
 from authorizenet import apicontractsv1
 from authorizenet.apicontrollers import createTransactionController
 
-'''
-This is the format for the data type for charge_credit_card.
-data = {
-    "createTransactionRequest": {
-        "merchantAuthentication": {
-            "name": "API_LOGIN_ID",
-            "transactionKey": "API_TRANSACTION_KEY"
-        },
-                "refId": "123456", 
-        "transactionRequest": {
-            "transactionType": "authCaptureTransaction",
-            "amount": "5",
-            "payment": {
-                "creditCard": {
-                    "cardNumber": "5424000000000015",
-                    "expirationDate": "2020-12",
-                    "cardCode": "999"
-                }
-            }
-        }
-    }
-}
-'''
+
 
 def charge_credit_card(data):
 
@@ -46,9 +24,9 @@ def charge_credit_card(data):
 
     # Create the payment data for a credit card
     creditCard = apicontractsv1.creditCardType()
-    creditCard.cardNumber = data["createTransactionRequest"]["transactionRequest"]["payment"]["creditCard"]["cardNumber"]
-    creditCard.expirationDate = data["createTransactionRequest"]["transactionRequest"]["payment"]["creditCard"]["expirationDate"]
-    creditCard.cardCode = data["createTransactionRequest"]["transactionRequest"]["payment"]["creditCard"]["cardCode"]
+    creditCard.cardNumber = data["creditCard"]["cardNumber"]
+    creditCard.expirationDate = data["creditCard"]["expirationDate"]
+    creditCard.cardCode = data["creditCard"]["cardCode"]
 
     # Add the payment data to a paymentType object
     payment = apicontractsv1.paymentType()
@@ -58,7 +36,7 @@ def charge_credit_card(data):
     # Create a transactionRequestType object and add the previous objects to it.
     transactionrequest = apicontractsv1.transactionRequestType()
     transactionrequest.transactionType = "authCaptureTransaction"
-    transactionrequest.amount = data["createTransactionRequest"]["transactionRequest"]["amount"]
+    transactionrequest.amount = data["amount"]
     transactionrequest.payment = payment
 
     # Assemble the complete transaction request
@@ -129,14 +107,7 @@ Credit a bank account
 
 '''
 data2 = {
-    "createTransactionRequest": {
-        "merchantAuthentication": {
-            "name": "API_LOGIN_ID",
-            "transactionKey": "API_TRANSACTION_KEY"
-        },
-        "refId": "123456",
-        "transactionRequest": {
-            "transactionType": "refundTransaction",
+
             "amount": "5",
             "payment": {
                 "bankAccount": {
@@ -166,9 +137,9 @@ def credit_bank_account(data2):
     bankAccount = apicontractsv1.bankAccountType()
     accountType = apicontractsv1.bankAccountTypeEnum
     bankAccount.accountType = accountType.checking
-    bankAccount.routingNumber = data2["createTransactionRequest"]["transactionRequest"]["payment"]["bankAccount"]["routingNumber"]
-    bankAccount.accountNumber = data2["createTransactionRequest"]["transactionRequest"]["payment"]["bankAccount"]["accountNumber"]
-    bankAccount.nameOnAccount = data2["createTransactionRequest"]["transactionRequest"]["payment"]["bankAccount"]["nameOnAccount"]
+    bankAccount.routingNumber = data2["payment"]["bankAccount"]["routingNumber"]
+    bankAccount.accountNumber = data2["payment"]["bankAccount"]["accountNumber"]
+    bankAccount.nameOnAccount = data2["payment"]["bankAccount"]["nameOnAccount"]
 
     # Add the payment data to a paymentType object
     payment = apicontractsv1.paymentType()
@@ -177,7 +148,7 @@ def credit_bank_account(data2):
     # Create a transactionRequestType object and add the previous objects to it.
     transactionrequest = apicontractsv1.transactionRequestType()
     transactionrequest.transactionType = "refundTransaction"
-    transactionrequest.amount = data2["createTransactionRequest"]["transactionRequest"]["amount"]
+    transactionrequest.amount = data2["amount"]
     transactionrequest.payment = payment
 
     # Assemble the complete transaction request
@@ -234,7 +205,6 @@ def credit_bank_account(data2):
 
     return response
 
-
 # Copyright 2018 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -277,9 +247,9 @@ def create_user():
             "in_app_transactions": [],
             "out_app_transactions": [] }
     
-    result = collection.insert_one(user)
+    collection.insert_one(user)
     client.close()
-    return json.dumps(result),200,{'content-type':'application/json'}
+    return json.dumps("sucess"),200,{'content-type':'application/json'}
     
 # updates database transations from local chirp
 @app.route('/update_transactions', methods=['POST'])
