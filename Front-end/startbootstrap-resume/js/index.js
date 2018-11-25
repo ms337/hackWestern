@@ -3,6 +3,7 @@ var processData;
 var myWallet_id = "1234567589";
 var transaction = {};
 sendPressed = false;
+var balance = 0;
 
 var sendChirp = function(){
   sendPressed = true;
@@ -88,6 +89,7 @@ var updateWallet = function() {
   var expiaryDate = document.getElementById("expiaryDate").value;
   var cardCode = document.getElementById("cardCode").value;
   var amountToAdd = document.getElementById("amountToAdd").value;
+  balance += parseFloat(amountToAdd);
   const xhttp = new XMLHttpRequest();
   const url = 'http://35.231.228.196:80/update_user';
   xhttp.onreadystatechange = function() {
@@ -110,18 +112,24 @@ var updateWallet = function() {
 }
 
 var withdrawFromWallet = function() {
+  var accountType = document.getElementById("accountType").value;
+  var routingNumber = document.getElementById("routingNumber").value;
+  var accountNumber = document.getElementById("accountNumber").value;
+  var nameOnAccount = document.getElementById("nameOnAccount").value;
+  var amountToTakeOut = document.getElementById("amountToTakeOut").value;
+  balance -= parseFloat(amountToTakeOut);
   const Http = new XMLHttpRequest();
   const url = 'http://35.231.228.196:80/'; //CHECK URL
 
   Http.open("POST", url);
 
-  Http.send(info = {"amount" : 50,
+  Http.send(info = {"amount" : amountToTakeOut,
             "payment": {
                 "bankAccount": {
-                    "accountType": "checking",
-                    "routingNumber": "121042882",
-                    "accountNumber": "123456789000",
-                    "nameOnAccount": "John Doe"
+                    "accountType": accountType,
+                    "routingNumber": routingNumber,
+                    "accountNumber": accountNumber,
+                    "nameOnAccount": nameOnAccount
                 }
             }
           });

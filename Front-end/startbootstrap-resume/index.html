@@ -51,7 +51,10 @@
           <a class="myTest js-scroll-trigger" href="#experience">SIGN UP</a>
         </li>
         <li class="nav-item">
-          <a class="myTest js-scroll-trigger" href="#addMonies">ADD MONIES</a>
+          <a class="myTest js-scroll-trigger" href="#addMonies">ADD MONEY</a>
+        </li>
+        <li class="nav-item">
+          <a class="myTest js-scroll-trigger" href="#takeOutMoney">TAKE OUT MONEY</a>
         </li>
         <li class="nav-item">
           <a class="myTest js-scroll-trigger" href="#education">SEND MONEY</a>
@@ -92,7 +95,7 @@
               <label for="exampleInputPassword1">Password</label>
               <input type="password" class="form-control" id="registerPassword" placeholder="Password">
             </div>
-            <button type="submit" class="btn btn-primary" >Sign Up</button>
+            <button type="submit" class="btn btn-primary">Sign Up</button>
           </form>
         </div>
     </section>
@@ -114,14 +117,47 @@
               <input type="text" class="form-control" id="expiaryDate" aria-describedby="emailHelp" placeholder="01/22">
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">Card Code</label>
-                <input type="text" class="form-control" id="cardCode" aria-describedby="emailHelp" placeholder="999">
-              </div>
+              <label for="exampleInputEmail1">Card Code</label>
+              <input type="text" class="form-control" id="cardCode" aria-describedby="emailHelp" placeholder="999">
+            </div>
             <div class="form-group">
               <label for="exampleInputPassword1">Amount</label>
               <input type="text" class="form-control" id="amountToAdd" placeholder="50">
             </div>
             <button type="submit" class="btn btn-primary" onclick="updateWallet()">Add</button>
+          </form>
+        </div>
+    </section>
+
+    <hr class="m-0">
+
+    <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="takeOutMoney">
+      <div class="my-auto">
+        <h2 class="mb-5">Take Out Money</h2>
+        <div class="resume-item d-flex flex-column flex-md-row mb-5">
+          <form>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Account Tyoe</label>
+              <input type="text" class="form-control" id="accountType" aria-describedby="emailHelp" placeholder="chequing, savings">
+              <small id="emailHelp" class="form-text text-muted">We'll never share your card number with anyone else.</small>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Routing Number</label>
+              <input type="text" class="form-control" id="routingNumber" aria-describedby="emailHelp" placeholder="001">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Account Number</label>
+              <input type="text" class="form-control" id="accountNumber" aria-describedby="emailHelp" placeholder="3467865678">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Name on Card</label>
+              <input type="text" class="form-control" id="nameOnAccount" placeholder="John Doe">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Amount</label>
+              <input type="text" class="form-control" id="amountToTakeOut" placeholder="50">
+            </div>
+            <button type="submit" class="btn btn-primary" onclick="withdrawFromWallet()">Withdraw</button>
           </form>
         </div>
     </section>
