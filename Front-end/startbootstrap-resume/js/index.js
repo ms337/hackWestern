@@ -129,7 +129,7 @@ var updateWallet = function() {
   var amountToAdd = document.getElementById("amountToAdd").value;
   balance += parseFloat(amountToAdd);
   const xhttp = new XMLHttpRequest();
-  const url = 'http://35.231.228.196:80/update_user';
+  const url = 'http://35.231.228.196:80/depo';
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       print("WORKS");
@@ -159,23 +159,33 @@ var withdrawFromWallet = function() {
   const Http = new XMLHttpRequest();
   const url = 'http://35.231.228.196:80/withdraw'; //CHECK URL
 
-  Http.open("POST", url);
+  var data = {"amount" : "5","routingNumber": "121042882","accountNumber": "1234567890","nameOnAccount": "jon doe"}
 
-  Http.send(info = {"amount" : amountToTakeOut,
-            "payment":{
-                "bankAccount": {
-                    "accountType": accountType,
-                    "routingNumber": routingNumber,
-                    "accountNumber": accountNumber,
-                    "nameOnAccount": nameOnAccount
-                }
-            }
-          });
-  Http.onreadystatechange=(e)=>{
-    console.log(Http.responseText);
+  fetch(url, {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }, function (err, results) {
+    console.log(err, results);
+  })
+  // Http.open("POST", url);
+
+  // Http.send(info = {"amount" : amountToTakeOut,
+  //           "payment":{
+  //               "bankAccount": {
+  //                   "accountType": accountType,
+  //                   "routingNumber": routingNumber,
+  //                   "accountNumber": accountNumber,
+  //                   "nameOnAccount": nameOnAccount
+  //               }
+  //           }
+  //         });
+  // Http.onreadystatechange=(e)=>{
+  //   console.log(Http.responseText);
   //console.log(xhttp.responseText);
   }
-}
 
 var userSignUp = function() {
   var phoneNumber = document.getElementById("phoneNumber").value;
