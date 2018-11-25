@@ -11,6 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+from pymongo import MongoClient
 from flask import Flask, request, jsonify
 from authFuncs.py import charge_credit_card, credit_bank_account
 
@@ -40,20 +41,22 @@ def create_user():
 # updates database transations from local chirp
 @app.route('/update_transactions', methods=['POST'])
 def transaction_data():
-    
-    
+    pass
+
 # updates a users balance
 @app.route('/update_user', methods=['POST'])
 def user_data():
+    pass
 
 # withdraw money from Dolphin
 @app.route('/withdraw', methods=['POST'])
 def withdraw_data():
+    return credit_bank_account(request.data)
 
 # deposit money to Dolphin
 @app.route('/deposit', methods=['POST'])
 def deposit_data():
-    return request.data
+    return charge_credit_card(request.data)
 
 
 if __name__ == '__main__':
