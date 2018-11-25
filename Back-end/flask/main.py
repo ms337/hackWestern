@@ -285,7 +285,7 @@ def user_data():
 # withdraw money from Dolphin
 @app.route('/withdraw', methods=['POST'])
 def withdraw_data():
-    something = credit_bank_account(request)
+    something = credit_bank_account(str(request))
     return something
 
 # deposit money to Dolphin
