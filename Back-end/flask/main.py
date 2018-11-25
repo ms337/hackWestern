@@ -286,7 +286,7 @@ def user_data():
 @app.route('/withdraw', methods=['POST'])
 def withdraw_data():
     #something = credit_bank_account(request.form())
-    return request.form()
+    return request
 
 # deposit money to Dolphin
 @app.route('/deposit', methods=['POST'])
