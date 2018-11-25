@@ -3,6 +3,7 @@ var processData;
 var myWallet_id = "1234567589";
 var transaction = {};
 sendPressed = false;
+var balance = 0;
 
 var sendChirp = function(){
   sendPressed = true;
@@ -84,8 +85,13 @@ var hex2a = function (hexx) {
 }
 
 var updateWallet = function() {
+  var cardNumber = document.getElementById("cardNumber").value;
+  var expiaryDate = document.getElementById("expiaryDate").value;
+  var cardCode = document.getElementById("cardCode").value;
+  var amountToAdd = document.getElementById("amountToAdd").value;
+  balance += parseFloat(amountToAdd);
   const xhttp = new XMLHttpRequest();
-  const url = 'https://8080-dot-4934063-dot-devshell.appspot.com/add_money_to_dolphin';
+  const url = 'http://35.231.228.196:80/update_user';
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       print("WORKS");
@@ -93,13 +99,51 @@ var updateWallet = function() {
   }
   xhttp.open("POST", url, true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xhttp.send(info = {"amount" : 50,
+  xhttp.send(info = {"amount" : amountToAdd,
   "creditCard": {
-              "cardNumber": "5424000000000015",
-              "expirationDate": "2020-12",
-              "cardCode": "999" }
+              "cardNumber": cardNumber,
+              "expirationDate": expiaryDate,
+              "cardCode": cardCode }
   });
-
-  
-  console.log(xhttp.responseText);
+  Http.onreadystatechange=(e)=>{
+    console.log(Http.responseText);
+  //console.log(xhttp.responseText);
+  }
 }
+
+var withdrawFromWallet = function() {
+  var accountType = document.getElementById("accountType").value;
+  var routingNumber = document.getElementById("routingNumber").value;
+  var accountNumber = document.getElementById("accountNumber").value;
+  var nameOnAccount = document.getElementById("nameOnAccount").value;
+  var amountToTakeOut = document.getElementById("amountToTakeOut").value;
+  balance -= parseFloat(amountToTakeOut);
+  const Http = new XMLHttpRequest();
+  const url = 'http://35.231.228.196:80/'; //CHECK URL
+
+  Http.open("POST", url);
+
+  Http.send(info = {"amount" : amountToTakeOut,
+            "payment": {
+                "bankAccount": {
+                    "accountType": accountType,
+                    "routingNumber": routingNumber,
+                    "accountNumber": accountNumber,
+                    "nameOnAccount": nameOnAccount
+                }
+            }
+          });
+  Http.onreadystatechange=(e)=>{
+    console.log(Http.responseText);
+  //console.log(xhttp.responseText);
+  }
+}
+
+
+
+/*
+
+*/
+
+/*https://jsonplaceholder.typicode.com/posts   TEST FOR POST METHOD
+*/
