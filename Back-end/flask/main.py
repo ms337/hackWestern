@@ -250,6 +250,7 @@ def credit_bank_account(data2):
 # limitations under the License.
 from pymongo import MongoClient
 from flask import Flask, request, jsonify
+import json
 
 app = Flask(__name__)
 
@@ -276,9 +277,9 @@ def create_user():
             "in_app_transactions": [],
             "out_app_transactions": [] }
     
-    collection.insert_one(user)
+    result = collection.insert_one(user)
     client.close()
-    return Response()
+    return json.dumps(result),200,{'content-type':'application/json'}
     
 # updates database transations from local chirp
 @app.route('/update_transactions', methods=['POST'])
