@@ -222,7 +222,10 @@ from pymongo import MongoClient
 from flask import Flask, request, jsonify
 import json
 
+from flask_cors import CORS
+
 app = Flask(__name__)
+CORS(app)
 
 #testing
 @app.route('/', methods=['GET'])
