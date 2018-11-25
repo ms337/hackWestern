@@ -1,9 +1,15 @@
 [
     {
         "_id": "5bf95c12cdf877dc29936b57",
-        "name": "Fanny Kline",
+        "transactionKey": "API_TRANSACTION_KEY",
+        "name": "API_LOGIN_ID",
         "account": "(970) 531-3609",
         "balance": 90567,
+        "creditCard": {
+            "cardNumber": "5424000000000015",
+            "expirationDate": "2020-12",
+            "cardCode": "999"
+        },
         "transactions": [
             {
                 "date": "2016-06-15T05:16:10 +02:30",
