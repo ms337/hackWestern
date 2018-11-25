@@ -85,7 +85,7 @@ var hex2a = function (hexx) {
 
 var updateWallet = function() {
   const Http = new XMLHttpRequest();
-  const url = 'https://8080-dot-4934063-dot-devshell.appspot.com/';
+  const url = 'http://35.231.228.196:80/';
 
   Http.open("POST", url);
 
