@@ -270,8 +270,8 @@ def create_user():
     finally:
         client.close()
     
-    user = {"wallet_id": int(request.data["wallet_id"]),
-            "password": int(request.data["password"]),
+    user = {"wallet_id": request.form["wallet_id"],
+            "password": request.form["password"],
             "balance": 0,
             "in_app_transactions": [],
             "out_app_transactions": [] }
