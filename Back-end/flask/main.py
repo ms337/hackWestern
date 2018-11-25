@@ -124,7 +124,6 @@ data2 = {
 '''
 
 def credit_bank_account(data):
-    return data
     """
     Credit a bank account
     """
