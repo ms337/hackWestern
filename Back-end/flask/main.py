@@ -265,8 +265,8 @@ def create_user():
     finally:
         client.close()
     
-    user = {"wallet_id": str(request.data["wallet_id"].decode("utf-8")),
-            "password": str(request.data["password"].decode("utf-8")),
+    user = {"wallet_id": int(request.data["wallet_id"]),
+            "password": int(request.data["password"]),
             "balance": 0,
             "in_app_transactions": [],
             "out_app_transactions": [] }
