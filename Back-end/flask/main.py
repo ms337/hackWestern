@@ -123,7 +123,7 @@ data2 = {
 }
 '''
 
-def credit_bank_account(data2):
+def credit_bank_account():
     """
     Credit a bank account
     """
@@ -289,7 +289,7 @@ def withdraw_data():
 # deposit money to Dolphin
 @app.route('/deposit', methods=['POST'])
 def deposit_data():
-    return charge_credit_card(request.form)
+    return charge_credit_card()
 
 
 if __name__ == '__main__':
