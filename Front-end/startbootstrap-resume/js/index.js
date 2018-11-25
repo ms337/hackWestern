@@ -14,7 +14,7 @@ var whom;
 
 
 
-var sendChirp = function(){
+var sendChirp = function () {
   sendPressed = true;
   stateText.innerHTML = "Sending";
   infoText.innerHTML = "awaiting transaction validation"
@@ -24,8 +24,7 @@ var receiveChirp = function () {
 
   Chirp({
     key: 'CFaaF6C954bA8ddb5f5CFDeBD',
-    onStateChanged: (previous, current) => 
-    {
+    onStateChanged: (previous, current) => {
       console.log(current);
     },
     onReceived: data => {
@@ -37,7 +36,7 @@ var receiveChirp = function () {
       }
     }
   }).then(sdk => {
-    if(sendPressed){
+    if (sendPressed) {
       //first arg is phone number of person you send to
       var toSend = document.getElementById("amount").value;
       var toSendTo = document.getElementById("phoneNumberToSendTo2").value;
@@ -72,14 +71,14 @@ var convertDataAndSave = function () {
   }).then(sdk => {
     var ASCIIData = hex2a(sdk.asString(processData));
     var splitData = ASCIIData.split(",");
-    
-    if(splitData[0]=="1"){
+
+    if (splitData[0] == "1") {
       infoText.innerHTML = "Transaction Success"
       moneyText.innerHTML = "Sent $" + moneyz + " to " + whom;
       sendMoney();
-  
+
       sdk.stop();
-    }else if(splitData[0]=="0"){
+    } else if (splitData[0] == "0") {
       infoText.innerHTML = "Transaction Failure"
       sdk.stop();
     }
@@ -88,13 +87,13 @@ var convertDataAndSave = function () {
       whom = splitData[0];
       moneyz = splitData[1];
 
-      transaction += 
-      {
-        "date": new Date(),
-        "type": "received",
-        "wallet_id": splitData[0],
-        "amount": splitData[1]
-      };
+      transaction +=
+        {
+          "date": new Date(),
+          "type": "received",
+          "wallet_id": splitData[0],
+          "amount": splitData[1]
+        };
       localStorage.setItem('transaction', JSON.stringify(transaction));
       infoText.innerHTML = "Proceed with transaction"
       moneyText.innerHTML = "Received $" + moneyz + " from " + whom;
@@ -106,9 +105,9 @@ var convertDataAndSave = function () {
 
       infoText.innerHTML = "Cancel the transaction"
       sdk.send("0");
-     
+
       sdk.stop();
-   
+
     }
   }).catch(console.error)
 }
@@ -122,44 +121,45 @@ var hex2a = function (hexx) {
 }
 
 
-var updateWallet = function() {
+var updateWallet = function () {
   var cardNumber = document.getElementById("cardNumber").value;
   var expiryDate = document.getElementById("expiryDate").value;
   var cardCode = document.getElementById("cardCode").value;
   var amountToAdd = document.getElementById("amountToAdd").value;
   balance += parseFloat(amountToAdd);
   const xhttp = new XMLHttpRequest();
-  const url = 'http://35.231.228.196:80/depo';
-  xhttp.onreadystatechange = function() {
+  const url = 'http://35.231.228.196:80/deposit';
+  xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       print("WORKS");
     }
   }
   xhttp.open("POST", url, true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xhttp.send(info = {"amount" : amountToAdd,
-  "creditCard": {
-              "cardNumber": cardNumber,
-              "expirationDate": expiryDate,
-              "cardCode": cardCode }
+  xhttp.send(info = {
+    "amount": amountToAdd,
+    "creditCard": {
+      "cardNumber": cardNumber,
+      "expirationDate": expiryDate,
+      "cardCode": cardCode
+    }
   });
-  Http.onreadystatechange=(e)=>{
+  Http.onreadystatechange = (e) => {
     console.log(Http.responseText);
-  //console.log(xhttp.responseText);
+    //console.log(xhttp.responseText);
   }
 }
 
-var withdrawFromWallet = function() {
+var withdrawFromWallet = function () {
   var accountType = document.getElementById("accountType").value;
   var routingNumber = document.getElementById("routingNumber").value;
   var accountNumber = document.getElementById("accountNumber").value;
   var nameOnAccount = document.getElementById("nameOnAccount").value;
   var amountToTakeOut = document.getElementById("amountToTakeOut").value;
   balance -= parseFloat(amountToTakeOut);
-  const Http = new XMLHttpRequest();
-  const url = 'http://35.231.228.196:80/withdraw'; //CHECK URL
-
-  var data = {"amount" : "5","routingNumber": "121042882","accountNumber": "1234567890","nameOnAccount": "jon doe"}
+  const url = 'http://35.243.145.177/withdraw'; //CHECK URL
+  console.log("withdraw");
+  var data = { "amount": "5", "routingNumber": "121042882", "accountNumber": "1234567890", "nameOnAccount": "jon doe" }
 
   fetch(url, {
     method: 'POST',
@@ -185,29 +185,29 @@ var withdrawFromWallet = function() {
   // Http.onreadystatechange=(e)=>{
   //   console.log(Http.responseText);
   //console.log(xhttp.responseText);
-  }
+}
 
-var userSignUp = function() {
+var userSignUp = function () {
   var phoneNumber = document.getElementById("phoneNumber").value;
   var password = document.getElementById('registerPassword').value;
 
   const Http = new XMLHttpRequest();
-  const url = 'http://35.231.228.196:80/create_user'; 
+  const url = 'http://35.231.228.196:80/create_user';
 
   Http.open("POST", url);
-  Http.send(info = 
-                {
-                  "wallet_id" : phoneNumber,
-                  "password" : password,
-          });
-  Http.onreadystatechange=(e)=>{
+  Http.send(info =
+    {
+      "wallet_id": phoneNumber,
+      "password": password,
+    });
+  Http.onreadystatechange = (e) => {
     console.log(Http.responseText);
-  //console.log(xhttp.responseText);
+    //console.log(xhttp.responseText);
   }
 }
 
 //FINISH
-var sendMoney = function() {
+var sendMoney = function () {
   var phoneNumber = document.getElementById("phoneNumber2").value;
   var amountToTakeOut = document.getElementById("amount").value;
   balance -= parseFloat(amountToTakeOut);
@@ -215,13 +215,14 @@ var sendMoney = function() {
   const url = 'http://35.231.228.196:80/update_transactions'; //CHECK URL
 
   Http.open("POST", url);
-  Http.send(info = {"amount" : amountToTakeOut,
-                    "wallet_id_recipient": phoneNumber,
-                    "wallet_id_sender": myWallet_id,
-          });
-  Http.onreadystatechange=(e)=>{
+  Http.send(info = {
+    "amount": amountToTakeOut,
+    "wallet_id_recipient": phoneNumber,
+    "wallet_id_sender": myWallet_id,
+  });
+  Http.onreadystatechange = (e) => {
     console.log(Http.responseText);
-  //console.log(xhttp.responseText);
+    //console.log(xhttp.responseText);
   }
 }
 /*
