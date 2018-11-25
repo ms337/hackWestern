@@ -306,19 +306,18 @@ def user_data():
     finally:
         client.close()
 
-    collection.update_one({"wallet_id":request.data["wallet_id"]}, {'$set':{"balance":request.data["balance"]}})
     client.close()
 
 
 # withdraw money from Dolphin
 @app.route('/withdraw', methods=['POST'])
 def withdraw_data():
-    return credit_bank_account(request.data)
+    return credit_bank_account(request.form)
 
 # deposit money to Dolphin
 @app.route('/deposit', methods=['POST'])
 def deposit_data():
-    return charge_credit_card(request.data)
+    return charge_credit_card(request.form)
 
 
 if __name__ == '__main__':
