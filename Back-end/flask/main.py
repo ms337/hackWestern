@@ -123,7 +123,7 @@ data2 = {
 }
 '''
 
-def credit_bank_account():
+def credit_bank_account(data):
     """
     Credit a bank account
     """
