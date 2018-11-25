@@ -219,10 +219,8 @@ def credit_bank_account(data2):
 # See the License for the specific language governing permissions and
 # limitations under the License.
 from pymongo import MongoClient
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, Response
 import json
-from flask_cors import CORS
-
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -236,6 +234,7 @@ def test():
 # create a user  phone# password
 @app.route('/create_user', methods=['POST'])
 def create_user():
+    return Response(str(request))
     try:
         client = MongoClient('mongodb://admin:admin@hackwestern-shard-00-00-4qcqm.gcp.mongodb.net:27017,hackwestern-shard-00-01-4qcqm.gcp.mongodb.net:27017,hackwestern-shard-00-02-4qcqm.gcp.mongodb.net:27017/test?ssl=true&replicaSet=hackWestern-shard-0&authSource=admin')
         db = client['Dolphin']
@@ -245,15 +244,15 @@ def create_user():
     finally:
         client.close()
     
-    user = {"wallet_id": request.form["wallet_id"],
-            "password": request.form["password"],
+    user = {"wallet_id": "sdklnasdas",
+            "password": request.form['password'],
             "balance": 0,
             "in_app_transactions": [],
             "out_app_transactions": [] }
     
     collection.insert_one(user)
     client.close()
-    return "Sucess"
+    return Response("Sucess")
     
 # updates database transations from local chirp
 @app.route('/update_transactions', methods=['POST'])
