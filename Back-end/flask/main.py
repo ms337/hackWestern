@@ -130,8 +130,8 @@ def credit_bank_account(data):
     # Create a merchantAuthenticationType object with authentication details
     # retrieved from the constants file
     merchantAuth = apicontractsv1.merchantAuthenticationType()
-    merchantAuth.name = "2U6x9AuE"
-    merchantAuth.transactionKey = "5KY6z6r64HtK8kgv"
+    merchantAuth.name = "2s68MpYp"
+    merchantAuth.transactionKey = "4p9Qm37Es3Ur4whj"
 
     # Create the payment data for a bank account
     bankAccount = apicontractsv1.bankAccountType()
