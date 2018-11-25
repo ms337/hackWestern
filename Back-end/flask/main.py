@@ -203,7 +203,7 @@ def credit_bank_account(data):
     else:
         print('Null Response.')
 
-    return response
+    return str(response)
 
 # Copyright 2018 Google LLC
 #
