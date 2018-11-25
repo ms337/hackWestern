@@ -264,7 +264,13 @@ def transaction_data():
         return 'error connecting to mongo!'
     finally:
         client.close()
-
+    
+    for i in request.to_json():
+        collection.update_one({'wallet_id':i['wallet_id']}, 
+                           {"$push": {"balance":i['balance'],
+                                      "date": i['date'],
+                                      "amount":i['amount'],
+                                      "wallet_id":i['wallet_id']}})
 
 # updates a users balance
 @app.route('/update_user', methods=['POST'])
@@ -286,14 +292,12 @@ def user_data():
 # withdraw money from Dolphin
 @app.route('/withdraw', methods=['POST'])
 def withdraw_data():
-    something = credit_bank_account(str(request))
-    return something
+    return credit_bank_account(str(request))
 
 # deposit money to Dolphin
 @app.route('/deposit', methods=['POST'])
 def deposit_data():
-    something = charge_credit_card(str(request))
-    return something
+    return charge_credit_card(str(request))
 
 
 if __name__ == '__main__':
