@@ -103,7 +103,7 @@ var updateWallet = function() {
 
 var withdrawFromWallet = function() {
   const Http = new XMLHttpRequest();
-  const url = 'https://8080-dot-4934063-dot-devshell.appspot.com/withdraw'; //CHECK URL
+  const url = 'http://35.231.228.196:80/'; //CHECK URL
 
   Http.open("POST", url);
 
