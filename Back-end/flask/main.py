@@ -243,7 +243,7 @@ def create_user():
     finally:
         client.close()
     
-    user = {"wallet_id": request.to_json()['wallet_id'],
+    user = {"wallet_id": request.get_json()['wallet_id'],
             "password": request.get_json()['password'],
             "balance": 0,
             "in_app_transactions": [],
@@ -285,8 +285,8 @@ def user_data():
     finally:
         client.close()
         
-    collection.update_one({'wallet_id':request.to_json()['wallet_id']}, 
-                           {"$set": {"balance":request.to_json()['balance']}}, upsert=False)
+    collection.update_one({'wallet_id':request.get_json()['wallet_id']}, 
+                           {"$set": {"balance":request.get_json()['balance']}}, upsert=False)
     client.close()
 
 
