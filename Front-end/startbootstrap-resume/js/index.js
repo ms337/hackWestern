@@ -8,6 +8,9 @@ var balance = 0;
 
 var stateText = document.getElementById("state");
 var infoText = document.getElementById("info");
+var moneyText = document.getElementById("money");
+var moneyz;
+var whom;
 
 
 
@@ -38,6 +41,10 @@ var receiveChirp = function () {
       //first arg is phone number of person you send to
       var toSend = document.getElementById("amount").value;
       var toSendTo = document.getElementById("phoneNumberToSendTo2").value;
+
+      moneyz = toSend;
+      whom = toSendTo;
+
       sdk.send(toSendTo + "," + toSend);
 
       sendPressed = false;
@@ -68,6 +75,7 @@ var convertDataAndSave = function () {
     
     if(splitData[0]=="1"){
       infoText.innerHTML = "Transaction Success"
+      moneyText.innerHTML = "Sent $" + moneyz + " to " + whom;
       sendMoney();
   
       sdk.stop();
@@ -77,6 +85,9 @@ var convertDataAndSave = function () {
     }
     //date: is the current time stamp, type: always received in this case, wallet_id: id for user wallet, amount: is amount $
     else if (myWallet_id == splitData[0]) {
+      whom = splitData[0];
+      moneyz = splitData[1];
+
       transaction += 
       {
         "date": new Date(),
@@ -86,8 +97,10 @@ var convertDataAndSave = function () {
       };
       localStorage.setItem('transaction', JSON.stringify(transaction));
       infoText.innerHTML = "Proceed with transaction"
+      moneyText.innerHTML = "Received $" + moneyz + " from " + whom;
       sdk.send("1");
-  
+
+
       sdk.stop();
     } else {
 
