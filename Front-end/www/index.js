@@ -83,7 +83,7 @@ var hex2a = function (hexx) {
   return str;
 }
 
-var updateWallet = function() {
+var addToWallet = function() {
   const Http = new XMLHttpRequest();
   const url = 'http://35.231.228.196:80/';
 
