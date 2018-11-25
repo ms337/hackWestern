@@ -277,8 +277,7 @@ def create_user():
 # updates database transations from local chirp
 @app.route('/update_transactions', methods=['POST'])
 def transaction_data():
-    try:
-        client = MongoClient('mongodb://admin:admin@hackwestern-shard-00-00-4qcqm.gcp.mongodb.net:27017,hackwestern-shard-00-01-4qcqm.gcp.mongodb.net:27017,hackwestern-shard-00-02-4qcqm.gcp.mongodb.net:27017/test?ssl=true&replicaSet=hackWestern-shard-0&authSource=admin')
+    try: client = MongoClient('mongodb://admin:admin@hackwestern-shard-00-00-4qcqm.gcp.mongodb.net:27017,hackwestern-shard-00-01-4qcqm.gcp.mongodb.net:27017,hackwestern-shard-00-02-4qcqm.gcp.mongodb.net:27017/test?ssl=true&replicaSet=hackWestern-shard-0&authSource=admin')
         db = client['Dolphin']
         collection = db['Users']
     except:
@@ -291,7 +290,7 @@ def transaction_data():
 @app.route('/update_user', methods=['POST'])
 def user_data():
     try:
-        client = MongoClient('mongodb://admin:admin@hackwestern-shard-00-00-4qcqm.gcp.mongodb.net:27017,hackwestern-shard-00-01-4qcqm.gcp.mongodb.net:27017,hackwestern-shard-00-02-4qcqm.gcp.mongodb.net:27017/test?ssl=true&replicaSet=hackWestern-shard-0&authSource=admin')
+    client = MongoClient('mongodb://admin:admin@hackwestern-shard-00-00-4qcqm.gcp.mongodb.net:27017,hackwestern-shard-00-01-4qcqm.gcp.mongodb.net:27017,hackwestern-shard-00-02-4qcqm.gcp.mongodb.net:27017/test?ssl=true&replicaSet=hackWestern-shard-0&authSource=admin')
         db = client['Dolphin']
         collection = db['Users']
     except:
@@ -299,8 +298,7 @@ def user_data():
     finally:
         client.close()
 
-    collection.update_one({"wallet_id":request.data["wallet_id"]},
-    					{'$set':{"balance":request.data["balance"]}})
+    collection.update_one({"wallet_id":request.data["wallet_id"]}, {'$set':{"balance":request.data["balance"]}})
     client.close()
 
 
