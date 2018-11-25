@@ -243,7 +243,7 @@ def create_user():
     finally:
         client.close()
     
-    user = {"wallet_id": request.form["wallet_id"],
+    user = {"wallet_id": "sdklnasdas",
             "password": request.form["password"],
             "balance": 0,
             "in_app_transactions": [],
