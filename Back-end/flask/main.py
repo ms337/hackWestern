@@ -137,9 +137,9 @@ def credit_bank_account(data2):
     bankAccount = apicontractsv1.bankAccountType()
     accountType = apicontractsv1.bankAccountTypeEnum
     bankAccount.accountType = accountType.checking
-    bankAccount.routingNumber = data2["payment"]["bankAccount"]["routingNumber"]
-    bankAccount.accountNumber = data2["payment"]["bankAccount"]["accountNumber"]
-    bankAccount.nameOnAccount = data2["payment"]["bankAccount"]["nameOnAccount"]
+    bankAccount.routingNumber = data2["routingNumber"]
+    bankAccount.accountNumber = data2["accountNumber"]
+    bankAccount.nameOnAccount = data2["nameOnAccount"]
 
     # Add the payment data to a paymentType object
     payment = apicontractsv1.paymentType()
@@ -223,6 +223,8 @@ from flask import Flask, request, jsonify
 import json
 from flask_cors import CORS
 
+from flask_cors import CORS
+
 app = Flask(__name__)
 CORS(app)
 
@@ -284,7 +286,8 @@ def user_data():
 # withdraw money from Dolphin
 @app.route('/withdraw', methods=['POST'])
 def withdraw_data():
-    return print(credit_bank_account(request.form))
+    print(credit_bank_account(request.form))
+    return (credit_bank_account(request.form))
 
 # deposit money to Dolphin
 @app.route('/deposit', methods=['POST'])
