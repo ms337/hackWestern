@@ -13,7 +13,7 @@ from authorizenet import apicontractsv1
 from authorizenet.apicontrollers import createTransactionController
 
 '''
-This is the format for the data type.
+This is the format for the data type for charge_credit_card.
 data = {
     "createTransactionRequest": {
         "merchantAuthentication": {
@@ -121,5 +121,3 @@ if (os.path.basename(__file__) == os.path.basename(sys.argv[0])):
     charge_credit_card(50)
 '''
 
-a = charge_credit_card(data)
-print(a)
