@@ -11,43 +11,50 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
-# [START gae_python37_app]
 from flask import Flask, request, jsonify
+from authFuncs.py import charge_credit_card, credit_bank_account
 
-
-# If `entrypoint` is not defined in app.yaml, App Engine will look for an app
-# called `app` in `main.py`.
 app = Flask(__name__)
 
-@app.route('/', methods=['POST'])
-def get_data():
-    auth_data={
-	    "createTransactionRequest":{
-	        "merchantAuthentication":{
-	            "name":"2U6x9AuE",
-	            "transactionKey":"5KY6z6r64HtK8kgv"
-	        },
-	        "transactionRequest":{
-	            "transactionType": "authCaptureTransaction",
-	            "amount":request.data["amount"],
-	            "payment":{
-	                "creditCard":{
-	                    "cardNumber":request.data["cardNumber"],
-	                    "expirationDate":request.data["expirationDate"],
-	                    "cardCode":request.data["cardCode"]
-	                }
-	            }
-	        }
-	    }
-	}
-    req = request.post('https://apitest.authorize.net/xml/v1/request.api', data=auth_data)
-    return req
+# create a user  phone# password
+@app.route('/create_user', methods=['POST'])
+def create_user():
+    try:
+        client = MongoClient('mongodb://admin:admin@hackwestern-shard-00-00-4qcqm.gcp.mongodb.net:27017,hackwestern-shard-00-01-4qcqm.gcp.mongodb.net:27017,hackwestern-shard-00-02-4qcqm.gcp.mongodb.net:27017/test?ssl=true&replicaSet=hackWestern-shard-0&authSource=admin')
+        db = client['Dolphin']
+        collection = db['Users']
+    except:
+        return 'error connecting to mongo!'
+    finally:
+        client.close()
+    
+    user = {"wallet_id": request.data["wallet_id"],
+            "password": request.data["password"],
+            "balance": 0,
+            "in_app_transactions": [],
+            "out_app_transactions": [] }
+    
+    collection.insert_one(user)
+    client.close()
+    
+# updates database transations from local chirp
+@app.route('/update_transactions', methods=['POST'])
+def transaction_data():
+    
+    
+# updates a users balance
+@app.route('/update_user', methods=['POST'])
+def user_data():
+
+# withdraw money from Dolphin
+@app.route('/withdraw', methods=['POST'])
+def withdraw_data():
+
+# deposit money to Dolphin
+@app.route('/deposit', methods=['POST'])
+def deposit_data():
+    return request.data
 
 
 if __name__ == '__main__':
-    # This is used when running locally only. When deploying to Google App
-    # Engine, a webserver process such as Gunicorn will serve the app. This
-    # can be configured by adding an `entrypoint` to app.yaml.
     app.run(host='0.0.0.0', port=80)
-# [END gae_python37_app]
