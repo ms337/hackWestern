@@ -219,10 +219,8 @@ def credit_bank_account(data2):
 # See the License for the specific language governing permissions and
 # limitations under the License.
 from pymongo import MongoClient
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, Response
 import json
-from flask_cors import CORS
-
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -253,7 +251,7 @@ def create_user():
     
     collection.insert_one(user)
     client.close()
-    return "Sucess"
+    return Response("Sucess")
     
 # updates database transations from local chirp
 @app.route('/update_transactions', methods=['POST'])
