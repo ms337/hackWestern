@@ -221,8 +221,10 @@ def credit_bank_account(data2):
 from pymongo import MongoClient
 from flask import Flask, request, jsonify
 import json
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 #testing
 @app.route('/', methods=['GET'])
@@ -231,10 +233,7 @@ def test():
 
 # create a user  phone# password
 @app.route('/create_user', methods=['POST'])
-def create_user(response):
-    response.headers.add('Access-Control-Allow-Origin', '*')
-    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
-    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+def create_user():
     try:
         client = MongoClient('mongodb://admin:admin@hackwestern-shard-00-00-4qcqm.gcp.mongodb.net:27017,hackwestern-shard-00-01-4qcqm.gcp.mongodb.net:27017,hackwestern-shard-00-02-4qcqm.gcp.mongodb.net:27017/test?ssl=true&replicaSet=hackWestern-shard-0&authSource=admin')
         db = client['Dolphin']
