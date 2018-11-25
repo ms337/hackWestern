@@ -289,7 +289,7 @@ def withdraw_data():
 # deposit money to Dolphin
 @app.route('/deposit', methods=['POST'])
 def deposit_data():
-    return charge_credit_card()
+    return charge_credit_card(response.form)
 
 
 if __name__ == '__main__':
