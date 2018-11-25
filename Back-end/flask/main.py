@@ -271,6 +271,7 @@ def transaction_data():
                                       "date": i['date'],
                                       "amount":i['amount'],
                                       "wallet_id":i['wallet_id']}})
+    return "sucess!"
 
 # updates a users balance
 @app.route('/update_user', methods=['POST'])
