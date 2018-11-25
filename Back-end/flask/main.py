@@ -244,7 +244,7 @@ def create_user():
         client.close()
     
     user = {"wallet_id": "sdklnasdas",
-            "password": request['password'],
+            "password": request.get_json()['password'],
             "balance": 0,
             "in_app_transactions": [],
             "out_app_transactions": [] }
