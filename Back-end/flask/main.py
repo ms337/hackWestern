@@ -41,7 +41,7 @@ def get_data():
 	        }
 	    }
 	}
-   	req = request.post('https://apitest.authorize.net/xml/v1/request.api', data=auth_data)
+    req = request.post('https://apitest.authorize.net/xml/v1/request.api', data=auth_data)
     return req
 
 
