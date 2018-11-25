@@ -103,5 +103,39 @@ var updateWallet = function() {
               "expirationDate": expiaryDate,
               "cardCode": cardCode }
   });
-  console.log(xhttp.responseText);
+  Http.onreadystatechange=(e)=>{
+    console.log(Http.responseText);
+  //console.log(xhttp.responseText);
+  }
 }
+
+var withdrawFromWallet = function() {
+  const Http = new XMLHttpRequest();
+  const url = 'http://35.231.228.196:80/'; //CHECK URL
+
+  Http.open("POST", url);
+
+  Http.send(info = {"amount" : 50,
+            "payment": {
+                "bankAccount": {
+                    "accountType": "checking",
+                    "routingNumber": "121042882",
+                    "accountNumber": "123456789000",
+                    "nameOnAccount": "John Doe"
+                }
+            }
+          });
+  Http.onreadystatechange=(e)=>{
+    console.log(Http.responseText);
+  //console.log(xhttp.responseText);
+  }
+}
+
+
+
+/*
+
+*/
+
+/*https://jsonplaceholder.typicode.com/posts   TEST FOR POST METHOD
+*/
