@@ -85,11 +85,13 @@
       <div class="my-auto">
         <h2 class="mb-5">Sign-Up</h2>
         <div class="resume-item d-flex flex-column flex-md-row mb-5">
+
+          <!-- Sign up form -->
           <form>
             <div class="form-group">
-              <label for="exampleInputEmail1">Phone Number</label>
-              <input type="text" class="form-control" id="phoneNumber" aria-describedby="emailHelp" placeholder="Enter phone number">
-              <small id="emailHelp" class="form-text text-muted">We'll never share your phone number with anyone else.</small>
+              <label>Phone Number</label>
+              <input type="text" class="form-control" id="phoneNumber"  placeholder="Enter phone number">
+              <small class="form-text text-muted">We'll never share your phone number with anyone else.</small>
             </div>
             <div class="form-group">
               <label for="exampleInputPassword1">Password</label>
@@ -97,6 +99,8 @@
             </div>
             <button type="submit" class="btn btn-primary">Sign Up</button>
           </form>
+
+
         </div>
     </section>
 
@@ -106,26 +110,30 @@
       <div class="my-auto">
         <h2 class="mb-5">Add Money</h2>
         <div class="resume-item d-flex flex-column flex-md-row mb-5">
+
+          <!-- Add money to dolphin -->
           <form>
             <div class="form-group">
-              <label for="exampleInputEmail1">Card Number</label>
+              <label>Card Number</label>
               <input type="text" class="form-control" id="cardNumber" aria-describedby="emailHelp" placeholder="Enter card number">
               <small id="emailHelp" class="form-text text-muted">We'll never share your card number with anyone else.</small>
             </div>
             <div class="form-group">
-              <label for="exampleInputEmail1">Expiary Date</label>
-              <input type="text" class="form-control" id="expiaryDate" aria-describedby="emailHelp" placeholder="01/22">
+              <label >Expiry Date</label>
+              <input type="text" class="form-control" id="expiryDate" placeholder="01/22">
             </div>
             <div class="form-group">
-              <label for="exampleInputEmail1">Card Code</label>
-              <input type="text" class="form-control" id="cardCode" aria-describedby="emailHelp" placeholder="999">
+              <label >Card Code</label>
+              <input type="text" class="form-control" id="cardCode" placeholder="999">
             </div>
             <div class="form-group">
-              <label for="exampleInputPassword1">Amount</label>
+              <label>Amount</label>
               <input type="text" class="form-control" id="amountToAdd" placeholder="50">
             </div>
             <button type="submit" class="btn btn-primary" onclick="updateWallet()">Add</button>
           </form>
+
+
         </div>
     </section>
 
@@ -135,19 +143,20 @@
       <div class="my-auto">
         <h2 class="mb-5">Take Out Money</h2>
         <div class="resume-item d-flex flex-column flex-md-row mb-5">
+<!-- 
+take money out of wallet -->
           <form>
             <div class="form-group">
-              <label for="exampleInputEmail1">Account Tyoe</label>
-              <input type="text" class="form-control" id="accountType" aria-describedby="emailHelp" placeholder="chequing, savings">
-              <small id="emailHelp" class="form-text text-muted">We'll never share your card number with anyone else.</small>
+              <label>Account Type</label>
+              <input type="text" class="form-control" id="accountType" placeholder="Chequings/Savings">
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Routing Number</label>
-              <input type="text" class="form-control" id="routingNumber" aria-describedby="emailHelp" placeholder="001">
+              <input type="text" class="form-control" id="routingNumber" placeholder="001">
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Account Number</label>
-              <input type="text" class="form-control" id="accountNumber" aria-describedby="emailHelp" placeholder="3467865678">
+              <input type="text" class="form-control" id="accountNumber" placeholder="3467865678">
             </div>
             <div class="form-group">
               <label for="exampleInputPassword1">Name on Card</label>
@@ -159,6 +168,8 @@
             </div>
             <button type="submit" class="btn btn-primary" onclick="withdrawFromWallet()">Withdraw</button>
           </form>
+
+
         </div>
     </section>
 
@@ -170,21 +181,21 @@
         <div class="resume-item d-flex flex-column flex-md-row mb-5">
           <form>
             <div class="form-group">
-              <label for="exampleInputEmail1">Phone Number</label>
-              <input type="text" class="form-control" id="phoneNumberToSendTo" aria-describedby="emailHelp" placeholder="Enter phone number">
+              <label>Phone Number</label>
+              <input type="text" class="form-control" id="phoneNumberToSendTo2" placeholder="Enter phone number">
               <small id="emailHelp" class="form-text text-muted">Who do you you want to send money to?</small>
             </div>
             <div class="form-group">
-              <label for="exampleInputPassword1">Amount</label>
+              <label for="amountToTakeOut2">Amount</label>
               <input type="text" class="form-control" id="amount" placeholder="420">
               <small id="emailHelp" class="form-text text-muted">How much do you want to send?</small>
             </div>
             <div class="social-icons">
-              <a href="#" onclick="sendChirp()" title="Send!">
+              <a onclick="sendChirp()" title="Send!">
                 <i class="far fa-arrow-alt-circle-up"></i>
               </a>
               Send
-              <a href="#" onclick="receiveChirp()" title="Receive!">
+              <a onclick="receiveChirp()" title="Receive!">
                 <i class="far fa-arrow-alt-circle-down"></i>
               </a>
               Receive

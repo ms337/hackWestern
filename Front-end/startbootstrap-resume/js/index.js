@@ -53,6 +53,7 @@ var convertDataAndSave = function () {
     var splitData = ASCIIData.split(",");
     if(splitData[0]=="1"){
       console.log("payment confirmed")
+      sendMoney();
       sdk.stop();
     }else if(splitData[0]=="0"){
       console.log("payment cancelled")
@@ -84,9 +85,10 @@ var hex2a = function (hexx) {
   return str;
 }
 
+
 var updateWallet = function() {
   var cardNumber = document.getElementById("cardNumber").value;
-  var expiaryDate = document.getElementById("expiaryDate").value;
+  var expiryDate = document.getElementById("expiryDate").value;
   var cardCode = document.getElementById("cardCode").value;
   var amountToAdd = document.getElementById("amountToAdd").value;
   balance += parseFloat(amountToAdd);
@@ -124,7 +126,7 @@ var withdrawFromWallet = function() {
   Http.open("POST", url);
 
   Http.send(info = {"amount" : amountToTakeOut,
-            "payment": {
+            "payment":{
                 "bankAccount": {
                     "accountType": accountType,
                     "routingNumber": routingNumber,
@@ -138,6 +140,43 @@ var withdrawFromWallet = function() {
   //console.log(xhttp.responseText);
   }
 }
+
+var userSignUp = function() {
+  var phoneNumber = document.getElementById("phoneNumber").value;
+  var password = document.getElementById('registerPassword').value;
+
+  const Http = new XMLHttpRequest();
+  const url = 'http://35.231.228.196:80/'; 
+
+  Http.open("POST", url);
+  Http.send(info = 
+                {
+                  "wallet_id" : phoneNumber,
+                  "password" : password,
+          });
+  Http.onreadystatechange=(e)=>{
+    console.log(Http.responseText);
+  //console.log(xhttp.responseText);
+  }
+}
+
+var sendMoney = function() {
+  var phoneNumber = document.getElementById("phoneNumber2").value;
+  var amountToTakeOut = document.getElementById("amountToTakeOut2").value;
+  balance -= parseFloat(amountToTakeOut);
+  const Http = new XMLHttpRequest();
+  const url = 'http://35.231.228.196:80/'; //CHECK URL
+
+  Http.open("POST", url);
+  Http.send(info = {"amount" : amountToTakeOut,
+                    "wallet_id": phoneNumber,
+          });
+  Http.onreadystatechange=(e)=>{
+    console.log(Http.responseText);
+  //console.log(xhttp.responseText);
+  }
+}
+
 
 
 
