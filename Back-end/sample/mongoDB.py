@@ -11,7 +11,7 @@ finally:
     client.close()
     
     
-with open("sample_db_data.json") as f:
+with open("generated.json") as f:
     file_data = json.load(f)
 
 collection.insert_many(file_data)

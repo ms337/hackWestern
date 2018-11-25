@@ -3,10 +3,9 @@ https://www.json-generator.com/#
   '{{repeat(300, 500)}}',
   {
     _id: '{{objectId()}}',
-    name: '{{firstName()}} {{surname()}}',
-    account: '{{phone()}}',
+    wallet_id: '{{phone()}}',
     balance: '{{integer([0], [99999])}}',
-    transactions: [
+    in_app_transactions: [
       '{{repeat([0], [12])}}',
       {
         date: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss Z")}}',
@@ -18,7 +17,7 @@ https://www.json-generator.com/#
         amount: '{{integer([1], [9999])}}'
       }
     ],
-    stripe: [
+    out_app_transactions: [
       '{{repeat([0], [6])}}',
       {
         date: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss Z")}}',
