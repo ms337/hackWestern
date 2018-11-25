@@ -129,27 +129,28 @@ var updateWallet = function () {
   var cardCode = document.getElementById("cardCode").value;
   var amountToAdd = document.getElementById("amountToAdd").value;
   balance += parseFloat(amountToAdd);
-  const xhttp = new XMLHttpRequest();
-  const url = 'http://35.231.228.196:80/deposit';
-  xhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-      print("WORKS");
-    }
-  }
-  xhttp.open("POST", url, true);
-  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xhttp.send(info = {
+
+  const url = 'http://35.243.145.177:80/deposit';
+ 
+  console.log("updated");
+  var data = {
     "amount": amountToAdd,
     "creditCard": {
       "cardNumber": cardNumber,
       "expirationDate": expiryDate,
       "cardCode": cardCode
     }
-  });
-  Http.onreadystatechange = (e) => {
-    console.log(Http.responseText);
-    //console.log(xhttp.responseText);
   }
+
+  fetch(url, {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }, function (err, results) {
+    console.log(err, results);
+  })
 }
 
 var withdrawFromWallet = function () {
@@ -159,7 +160,7 @@ var withdrawFromWallet = function () {
   var nameOnAccount = document.getElementById("nameOnAccount").value;
   var amountToTakeOut = document.getElementById("amountToTakeOut").value;
   balance -= parseFloat(amountToTakeOut);
-  const url = 'http://35.243.145.177/withdraw'; //CHECK URL
+  const url = 'http://35.243.145.177:80/withdraw'; //CHECK URL
   console.log("withdraw");
   var data = { "amount": "5", "routingNumber": "121042882", "accountNumber": "1234567890", "nameOnAccount": "jon doe" }
 
@@ -172,60 +173,45 @@ var withdrawFromWallet = function () {
   }, function (err, results) {
     console.log(err, results);
   })
-  // Http.open("POST", url);
-
-  // Http.send(info = {"amount" : amountToTakeOut,
-  //           "payment":{
-  //               "bankAccount": {
-  //                   "accountType": accountType,
-  //                   "routingNumber": routingNumber,
-  //                   "accountNumber": accountNumber,
-  //                   "nameOnAccount": nameOnAccount
-  //               }
-  //           }
-  //         });
-  // Http.onreadystatechange=(e)=>{
-  //   console.log(Http.responseText);
-  //console.log(xhttp.responseText);
 }
 
 var userSignUp = function () {
   var phoneNumber = document.getElementById("phoneNumber").value;
   var password = document.getElementById('registerPassword').value;
+  const url = 'http://35.243.145.177:80/create_user';
+  console.log("signed up")
 
-  const Http = new XMLHttpRequest();
-  const url = 'http://35.231.228.196:80/create_user';
+  var data = { "wallet_id": phoneNumber, "password": password}
 
-  Http.open("POST", url);
-  Http.send(info =
-    {
-      "wallet_id": phoneNumber,
-      "password": password,
-    });
-  Http.onreadystatechange = (e) => {
-    console.log(Http.responseText);
-    //console.log(xhttp.responseText);
-  }
+  fetch(url, {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }, function (err, results) {
+    console.log(err, results);
+  })
 }
 
 //FINISH
 var sendMoney = function () {
-  var phoneNumber = document.getElementById("phoneNumber2").value;
+  var phoneNumber = document.getElementById("phoneNumberToSendTo2").value;
   var amountToTakeOut = document.getElementById("amount").value;
   balance -= parseFloat(amountToTakeOut);
-  const Http = new XMLHttpRequest();
-  const url = 'http://35.231.228.196:80/update_transactions'; //CHECK URL
 
-  Http.open("POST", url);
-  Http.send(info = {
-    "amount": amountToTakeOut,
-    "wallet_id_recipient": phoneNumber,
-    "wallet_id_sender": myWallet_id,
-  });
-  Http.onreadystatechange = (e) => {
-    console.log(Http.responseText);
-    //console.log(xhttp.responseText);
-  }
+  const url = 'http://35.243.145.177:80//update_transactions'; //CHECK URL
+  var data = { "amount": amountToTakeOut, "wallet_id_recipient": phoneNumber, "wallet_id_sender": myWallet_id}
+
+  fetch(url, {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }, function (err, results) {
+    console.log(err, results);
+  })
 }
 /*
 
