@@ -104,7 +104,7 @@ var updateWallet = function() {
   xhttp.send(info = {"amount" : amountToAdd,
   "creditCard": {
               "cardNumber": cardNumber,
-              "expirationDate": expiaryDate,
+              "expirationDate": expiryDate,
               "cardCode": cardCode }
   });
   Http.onreadystatechange=(e)=>{
