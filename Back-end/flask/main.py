@@ -161,7 +161,7 @@ def credit_bank_account(data):
         createtransactionrequest)
     createtransactioncontroller.execute()
 
-    response = createtransactioncontroller.getresponse()
+    return response = createtransactioncontroller.getresponse()
 
     if response is not None:
         # Check to see if the API request was successfully received and acted upon
