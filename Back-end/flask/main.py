@@ -250,7 +250,6 @@ def credit_bank_account(data2):
 # limitations under the License.
 from pymongo import MongoClient
 from flask import Flask, request, jsonify
-from ./authFuncs.py import charge_credit_card, credit_bank_account
 
 app = Flask(__name__)
 
