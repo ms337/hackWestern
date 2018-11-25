@@ -4,6 +4,7 @@ var myWallet_id = "1234567589";
 var transaction = {};
 sendPressed = false;
 var balance = 0;
+var transactions = [];
 
 
 var stateText = document.getElementById("state");
@@ -86,15 +87,16 @@ var convertDataAndSave = function () {
     else if (myWallet_id == splitData[0]) {
       whom = splitData[0];
       moneyz = splitData[1];
-
-      transaction +=
+      // localStorage.clear();
+      transaction =
         {
           "date": new Date(),
           "type": "received",
           "wallet_id": splitData[0],
           "amount": splitData[1]
         };
-      localStorage.setItem('transaction', JSON.stringify(transaction));
+        transactions.push(transaction);
+      // localStorage.setItem('transaction', JSON.stringify(transactions));
       infoText.innerHTML = "Proceed with transaction"
       moneyText.innerHTML = "Received $" + moneyz + " from " + whom;
       sdk.send("1");
