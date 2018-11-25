@@ -84,22 +84,46 @@ var hex2a = function (hexx) {
 }
 
 var updateWallet = function() {
-  const xhttp = new XMLHttpRequest();
-  const url = 'https://8080-dot-4934063-dot-devshell.appspot.com/add_money_to_dolphin';
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      print("WORKS");
-    }
-  }
-  xhttp.open("POST", url, true);
-  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xhttp.send(info = {"amount" : 50,
+  const Http = new XMLHttpRequest();
+  const url = 'https://8080-dot-4934063-dot-devshell.appspot.com/';
+
+  Http.open("POST", url);
+
+  Http.send(info = {"amount" : 50,
   "creditCard": {
               "cardNumber": "5424000000000015",
               "expirationDate": "2020-12",
               "cardCode": "999" }
   });
-
-  
-  console.log(xhttp.responseText);
+  Http.onreadystatechange=(e)=>{
+    console.log(Http.responseText);
+  //console.log(xhttp.responseText);
+  }
 }
+
+var updateWallet = function() {
+  const Http = new XMLHttpRequest();
+  const url = 'https://8080-dot-4934063-dot-devshell.appspot.com/';
+
+  Http.open("POST", url);
+
+  Http.send(info = {"amount" : 50,
+  "creditCard": {
+              "cardNumber": "5424000000000015",
+              "expirationDate": "2020-12",
+              "cardCode": "999" }
+  });
+  Http.onreadystatechange=(e)=>{
+    console.log(Http.responseText);
+  //console.log(xhttp.responseText);
+  }
+}
+
+
+
+/*
+
+*/
+
+/*https://jsonplaceholder.typicode.com/posts   TEST FOR POST METHOD
+*/
