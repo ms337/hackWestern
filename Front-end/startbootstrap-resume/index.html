@@ -22,8 +22,6 @@
 
   <!-- Custom styles for this template -->
   <link href="css/resume.min.css" rel="stylesheet">
-  <script src="./js/chirp-connect.js"></script>
-  <script src="./js/index.js"></script>
 
 </head>
 
@@ -31,7 +29,6 @@
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
     <a class="navbar-brand js-scroll-trigger" href="#page-top">
-      <span class="d-block d-lg-none">Clarence Taylor</span>
       <span class="d-none d-lg-block">
         <img class="" src="img/dolphin.png" style="padding-bottom: 20px;" alt="" height="150" width="150">
       </span>
@@ -97,7 +94,7 @@
               <label for="exampleInputPassword1">Password</label>
               <input type="password" class="form-control" id="registerPassword" placeholder="Password">
             </div>
-            <button type="submit" class="btn btn-primary">Sign Up</button>
+            <a onClick() = "userSignUp()" class="btn btn-primary" style="color: #fff">Sign Up</a>
           </form>
 
 
@@ -115,7 +112,7 @@
           <form>
             <div class="form-group">
               <label>Card Number</label>
-              <input type="text" class="form-control" id="cardNumber" aria-describedby="emailHelp" placeholder="Enter card number">
+              <input type="text" class="form-control" id="cardNumber"  placeholder="Enter card number">
               <small id="emailHelp" class="form-text text-muted">We'll never share your card number with anyone else.</small>
             </div>
             <div class="form-group">
@@ -130,7 +127,7 @@
               <label>Amount</label>
               <input type="text" class="form-control" id="amountToAdd" placeholder="50">
             </div>
-            <button type="submit" class="btn btn-primary" onclick="updateWallet()">Add</button>
+            <a class="btn btn-primary" onclick="updateWallet()" style="color: #fff">Add</a>
           </form>
 
 
@@ -166,7 +163,7 @@ take money out of wallet -->
               <label for="exampleInputPassword1">Amount</label>
               <input type="text" class="form-control" id="amountToTakeOut" placeholder="50">
             </div>
-            <button type="submit" class="btn btn-primary" onclick="withdrawFromWallet()">Withdraw</button>
+            <a class="btn btn-primary" onclick="withdrawFromWallet()" style="color: #fff">Withdraw</a>
           </form>
 
 
@@ -175,7 +172,10 @@ take money out of wallet -->
 
     <hr class="m-0">
 
-    <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="education">
+    <div class = "container">
+      <div class = "row">
+        <div class = "col">
+    <section class="resume-section p-3 p-lg-5 d-flex flex-column">
       <div class="my-auto">
         <h2 class="mb-5">Send Money!</h2>
         <div class="resume-item d-flex flex-column flex-md-row mb-5">
@@ -186,7 +186,7 @@ take money out of wallet -->
               <small id="emailHelp" class="form-text text-muted">Who do you you want to send money to?</small>
             </div>
             <div class="form-group">
-              <label for="amountToTakeOut2">Amount</label>
+              <label>Amount</label>
               <input type="text" class="form-control" id="amount" placeholder="420">
               <small id="emailHelp" class="form-text text-muted">How much do you want to send?</small>
             </div>
@@ -202,9 +202,17 @@ take money out of wallet -->
             </div>
           </form>
         </div>
-
+      </div>
       </div>
     </section>
+    <div class = "col">
+      <div style = "padding-top:220px; font-size: 40px;" >
+      <p  style = " color: rgb(10, 196, 10)"" id = "state"> :) </p>
+      <p id = "info">   </p>
+      </div>
+    </div>
+    </div>
+  </div>
 
     <hr class="m-0">
 
@@ -219,7 +227,9 @@ take money out of wallet -->
 
   <!-- Custom scripts for this template -->
   <script src="js/resume.min.js"></script>
-
+  <script src="./js/chirp-connect.js"></script>
+  <script src="./js/index.js"></script>
 </body>
+
 
 </html>

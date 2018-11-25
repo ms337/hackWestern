@@ -5,17 +5,28 @@ var transaction = {};
 sendPressed = false;
 var balance = 0;
 
+
+var stateText = document.getElementById("state");
+var infoText = document.getElementById("info");
+
+
+
 var sendChirp = function(){
   sendPressed = true;
+  stateText.innerHTML = "Sending";
+  infoText.innerHTML = "awaiting transaction validation"
   receiveChirp();
 }
 var receiveChirp = function () {
+
   Chirp({
     key: 'CFaaF6C954bA8ddb5f5CFDeBD',
-    onStateChanged: (previous, current) => {
+    onStateChanged: (previous, current) => 
+    {
       console.log(current);
     },
     onReceived: data => {
+      stateText.innerHTML = "Received"
       if (data.length > 0) {
         console.log(data);
         processData = data;
@@ -25,7 +36,10 @@ var receiveChirp = function () {
   }).then(sdk => {
     if(sendPressed){
       //first arg is phone number of person you send to
-      sdk.send("1234567589,50");
+      var toSend = document.getElementById("amount").value;
+      var toSendTo = document.getElementById("phoneNumberToSendTo2").value;
+      sdk.send(toSendTo + "," + toSend);
+
       sendPressed = false;
     }
 
@@ -51,28 +65,37 @@ var convertDataAndSave = function () {
   }).then(sdk => {
     var ASCIIData = hex2a(sdk.asString(processData));
     var splitData = ASCIIData.split(",");
+    
     if(splitData[0]=="1"){
-      console.log("payment confirmed")
+      infoText.innerHTML = "Transaction Success"
       sendMoney();
+  
       sdk.stop();
     }else if(splitData[0]=="0"){
-      console.log("payment cancelled")
+      infoText.innerHTML = "Transaction Failure"
       sdk.stop();
     }
     //date: is the current time stamp, type: always received in this case, wallet_id: id for user wallet, amount: is amount $
     else if (myWallet_id == splitData[0]) {
-      transaction += {
+      transaction += 
+      {
         "date": new Date(),
         "type": "received",
         "wallet_id": splitData[0],
         "amount": splitData[1]
       };
       localStorage.setItem('transaction', JSON.stringify(transaction));
+      infoText.innerHTML = "Proceed with transaction"
       sdk.send("1");
+  
       sdk.stop();
     } else {
+
+      infoText.innerHTML = "Cancel the transaction"
       sdk.send("0");
+     
       sdk.stop();
+   
     }
   }).catch(console.error)
 }
@@ -121,7 +144,7 @@ var withdrawFromWallet = function() {
   var amountToTakeOut = document.getElementById("amountToTakeOut").value;
   balance -= parseFloat(amountToTakeOut);
   const Http = new XMLHttpRequest();
-  const url = 'http://35.231.228.196:80/'; //CHECK URL
+  const url = 'http://35.231.228.196:80/withdraw'; //CHECK URL
 
   Http.open("POST", url);
 
@@ -146,7 +169,7 @@ var userSignUp = function() {
   var password = document.getElementById('registerPassword').value;
 
   const Http = new XMLHttpRequest();
-  const url = 'http://35.231.228.196:80/'; 
+  const url = 'http://35.231.228.196:80/create_user'; 
 
   Http.open("POST", url);
   Http.send(info = 
@@ -160,26 +183,24 @@ var userSignUp = function() {
   }
 }
 
+//FINISH
 var sendMoney = function() {
   var phoneNumber = document.getElementById("phoneNumber2").value;
-  var amountToTakeOut = document.getElementById("amountToTakeOut2").value;
+  var amountToTakeOut = document.getElementById("amount").value;
   balance -= parseFloat(amountToTakeOut);
   const Http = new XMLHttpRequest();
-  const url = 'http://35.231.228.196:80/'; //CHECK URL
+  const url = 'http://35.231.228.196:80/update_transactions'; //CHECK URL
 
   Http.open("POST", url);
   Http.send(info = {"amount" : amountToTakeOut,
-                    "wallet_id": phoneNumber,
+                    "wallet_id_recipient": phoneNumber,
+                    "wallet_id_sender": myWallet_id,
           });
   Http.onreadystatechange=(e)=>{
     console.log(Http.responseText);
   //console.log(xhttp.responseText);
   }
 }
-
-
-
-
 /*
 
 */
