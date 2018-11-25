@@ -124,6 +124,7 @@ data2 = {
 '''
 
 def credit_bank_account(data):
+    return data
     """
     Credit a bank account
     """
@@ -162,7 +163,6 @@ def credit_bank_account(data):
     createtransactioncontroller.execute()
 
     response = createtransactioncontroller.getresponse()
-    return response
 
     if response is not None:
         # Check to see if the API request was successfully received and acted upon
