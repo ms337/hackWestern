@@ -253,7 +253,7 @@ def create_user():
     
     collection.insert_one(user)
     client.close()
-    return json.dumps("sucess"),200,{'content-type':'application/json'}
+    return 200
     
 # updates database transations from local chirp
 @app.route('/update_transactions', methods=['POST'])
