@@ -1,7 +1,7 @@
 # hackWestern
-Dolphin
+Dolphin: Pay Smarter With Sound
 
-Pay Smarter with Sound
+Pitch:  https://docs.google.com/presentation/d/1AQua5IFmRP_MVruPftBZSNq4-HhR7uj7YMtuWRNQlrM/edit?usp=sharing
 
 Our Stack: 
 
@@ -16,3 +16,6 @@ MongoDB with pymongo
 Google Cloud Platform
 
 Bootstrap
+
+
+No security and encryption measures implemented till now. In development.
