@@ -1,7 +1,7 @@
 # hackWestern
 Dolphin: Pay Smarter With Sound
 
-Pitch:  https://docs.google.com/presentation/d/1AQua5IFmRP_MVruPftBZSNq4-HhR7uj7YMtuWRNQlrM/edit?usp=sharing
+Pitch: https://docs.google.com/presentation/d/1AQua5IFmRP_MVruPftBZSNq4-HhR7uj7YMtuWRNQlrM/edit?usp=sharing
 
 Our Stack: 
 
