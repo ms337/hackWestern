@@ -18,4 +18,4 @@ Google Cloud Platform
 Bootstrap
 
 
-No security and encryption measures implemented till now. In development.
+No security and encryption measures implemented till now. 
